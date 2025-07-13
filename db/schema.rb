@@ -17,10 +17,10 @@ ActiveRecord::Schema[8.0].define(version: 2025_07_13_005509) do
     t.string "description"
     t.string "gender"
     t.string "race"
-    t.integer "Place_id", null: false
+    t.integer "place_id", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.index ["Place_id"], name: "index_characters_on_Place_id"
+    t.index ["place_id"], name: "index_characters_on_place_id"
   end
 
   create_table "games", force: :cascade do |t|
@@ -39,34 +39,31 @@ ActiveRecord::Schema[8.0].define(version: 2025_07_13_005509) do
     t.string "game_id"
     t.string "name"
     t.string "description"
-    t.integer "Character_id", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.index ["Character_id"], name: "index_places_on_Character_id"
   end
 
   create_table "zelda_storylines", force: :cascade do |t|
-    t.integer "Game_id", null: false
-    t.integer "Character_id", null: false
+    t.integer "game_id", null: false
+    t.integer "character_id", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.index ["Character_id"], name: "index_zelda_storylines_on_Character_id"
-    t.index ["Game_id"], name: "index_zelda_storylines_on_Game_id"
+    t.index ["character_id"], name: "index_zelda_storylines_on_character_id"
+    t.index ["game_id"], name: "index_zelda_storylines_on_game_id"
   end
 
   create_table "zelda_worlds", force: :cascade do |t|
-    t.integer "Game_id", null: false
-    t.integer "Place_id", null: false
+    t.integer "game_id", null: false
+    t.integer "place_id", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.index ["Game_id"], name: "index_zelda_worlds_on_Game_id"
-    t.index ["Place_id"], name: "index_zelda_worlds_on_Place_id"
+    t.index ["game_id"], name: "index_zelda_worlds_on_game_id"
+    t.index ["place_id"], name: "index_zelda_worlds_on_place_id"
   end
 
-  add_foreign_key "characters", "Places"
-  add_foreign_key "places", "Characters"
-  add_foreign_key "zelda_storylines", "Characters"
-  add_foreign_key "zelda_storylines", "Games"
-  add_foreign_key "zelda_worlds", "Games"
-  add_foreign_key "zelda_worlds", "Places"
+  add_foreign_key "characters", "places"
+  add_foreign_key "zelda_storylines", "characters"
+  add_foreign_key "zelda_storylines", "games"
+  add_foreign_key "zelda_worlds", "games"
+  add_foreign_key "zelda_worlds", "places"
 end
