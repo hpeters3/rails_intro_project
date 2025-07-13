@@ -1,6 +1,6 @@
 require "test_helper"
 
-class MobTest < ActiveSupport::TestCase
+class ZeldaMobTest < ActiveSupport::TestCase
   # test "the truth" do
   #   assert true
   # end

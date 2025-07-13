@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[8.0].define(version: 2025_07_13_144637) do
+ActiveRecord::Schema[8.0].define(version: 2025_07_13_145904) do
   create_table "bosses", force: :cascade do |t|
     t.string "boss_id"
     t.string "name"
@@ -44,15 +44,6 @@ ActiveRecord::Schema[8.0].define(version: 2025_07_13_144637) do
     t.datetime "updated_at", null: false
   end
 
-  create_table "mobs", force: :cascade do |t|
-    t.integer "monster_id", null: false
-    t.integer "game_id", null: false
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-    t.index ["game_id"], name: "index_mobs_on_game_id"
-    t.index ["monster_id"], name: "index_mobs_on_monster_id"
-  end
-
   create_table "monsters", force: :cascade do |t|
     t.string "monster_id"
     t.string "name"
@@ -68,6 +59,15 @@ ActiveRecord::Schema[8.0].define(version: 2025_07_13_144637) do
     t.string "description"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+  end
+
+  create_table "zelda_mobs", force: :cascade do |t|
+    t.integer "monster_id", null: false
+    t.integer "game_id", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["game_id"], name: "index_zelda_mobs_on_game_id"
+    t.index ["monster_id"], name: "index_zelda_mobs_on_monster_id"
   end
 
   create_table "zelda_storylines", force: :cascade do |t|
@@ -90,8 +90,8 @@ ActiveRecord::Schema[8.0].define(version: 2025_07_13_144637) do
 
   add_foreign_key "bosses", "games"
   add_foreign_key "characters", "places"
-  add_foreign_key "mobs", "games"
-  add_foreign_key "mobs", "monsters"
+  add_foreign_key "zelda_mobs", "games"
+  add_foreign_key "zelda_mobs", "monsters"
   add_foreign_key "zelda_storylines", "characters"
   add_foreign_key "zelda_storylines", "games"
   add_foreign_key "zelda_worlds", "games"
