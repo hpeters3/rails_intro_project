@@ -1,12 +1,13 @@
 class CreateCharacters < ActiveRecord::Migration[8.0]
   def change
-    create_table :characters do |t|
-      t.string :character_id
+   create_table :characters, id: false do |t|
+      t.string :character_uuid, primary_key: true
       t.string :name
       t.string :description
       t.string :gender
       t.string :race
-      t.references :place, null: false, foreign_key: true
+      t.string :game_uuid
+      t.string :place_uuid
 
       t.timestamps
     end

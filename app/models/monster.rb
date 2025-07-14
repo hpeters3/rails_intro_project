@@ -1,7 +1,12 @@
 class Monster < ApplicationRecord
-  has_many :zelda_mobs, dependent: :destory
-  has_many :games, through: :zelda_mobs
+  self.primary_key = "monster_uuid"
 
-  validates :monster_id, presence: true
+  has_and_belongs_to_many :games,
+  join_table: "zelda_mobs",
+  foreign_key: "monster_uuid",
+  association_foreign_key: "game_uuid",
+  primary_key: "monster_uuid"
+
   validates :name, presence: true
+  validates :description, presence: true
 end

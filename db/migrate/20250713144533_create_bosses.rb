@@ -1,10 +1,10 @@
 class CreateBosses < ActiveRecord::Migration[8.0]
   def change
-    create_table :bosses do |t|
-      t.string :boss_id
+    create_table :bosses, id: false do |t|
+      t.string :boss_uuid, primary_key: true
       t.string :name
       t.string :description
-      t.references :game, null: false, foreign_key: true
+      t.references :game_uuid
 
       t.timestamps
     end

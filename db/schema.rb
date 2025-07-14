@@ -11,30 +11,27 @@
 # It's strongly recommended that you check this file into your version control system.
 
 ActiveRecord::Schema[8.0].define(version: 2025_07_13_145904) do
-  create_table "bosses", force: :cascade do |t|
-    t.string "boss_id"
+  create_table "bosses", primary_key: "boss_uuid", id: :string, force: :cascade do |t|
     t.string "name"
     t.string "description"
-    t.integer "game_id", null: false
+    t.integer "game_uuid_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.index ["game_id"], name: "index_bosses_on_game_id"
+    t.index ["game_uuid_id"], name: "index_bosses_on_game_uuid_id"
   end
 
-  create_table "characters", force: :cascade do |t|
-    t.string "character_id"
+  create_table "characters", primary_key: "character_uuid", id: :string, force: :cascade do |t|
     t.string "name"
     t.string "description"
     t.string "gender"
     t.string "race"
-    t.integer "place_id", null: false
+    t.string "game_uuid"
+    t.string "place_uuid"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.index ["place_id"], name: "index_characters_on_place_id"
   end
 
-  create_table "games", force: :cascade do |t|
-    t.string "game_id"
+  create_table "games", primary_key: "game_uuid", id: :string, force: :cascade do |t|
     t.string "name"
     t.string "description"
     t.string "developer"
@@ -44,56 +41,43 @@ ActiveRecord::Schema[8.0].define(version: 2025_07_13_145904) do
     t.datetime "updated_at", null: false
   end
 
-  create_table "monsters", force: :cascade do |t|
-    t.string "monster_id"
+  create_table "monsters", primary_key: "monster_uuid", id: :string, force: :cascade do |t|
     t.string "name"
     t.string "description"
+    t.string "game_uuid"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
 
-  create_table "places", force: :cascade do |t|
-    t.string "place_id"
-    t.string "game_id"
+  create_table "places", primary_key: "place_uuid", id: :string, force: :cascade do |t|
     t.string "name"
     t.string "description"
+    t.string "game_uuid"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
 
-  create_table "zelda_mobs", force: :cascade do |t|
-    t.integer "monster_id", null: false
-    t.integer "game_id", null: false
+  create_table "zelda_mobs", id: false, force: :cascade do |t|
+    t.string "monster_uuid", null: false
+    t.string "game_uuid", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.index ["game_id"], name: "index_zelda_mobs_on_game_id"
-    t.index ["monster_id"], name: "index_zelda_mobs_on_monster_id"
+    t.index ["monster_uuid", "game_uuid"], name: "index_zelda_mobs_on_monster_uuid_and_game_uuid", unique: true
   end
 
-  create_table "zelda_storylines", force: :cascade do |t|
-    t.integer "game_id", null: false
-    t.integer "character_id", null: false
+  create_table "zelda_storylines", id: false, force: :cascade do |t|
+    t.string "character_uuid", null: false
+    t.string "game_uuid", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.index ["character_id"], name: "index_zelda_storylines_on_character_id"
-    t.index ["game_id"], name: "index_zelda_storylines_on_game_id"
+    t.index ["character_uuid", "game_uuid"], name: "index_zelda_storylines_on_character_uuid_and_game_uuid", unique: true
   end
 
-  create_table "zelda_worlds", force: :cascade do |t|
-    t.integer "game_id", null: false
-    t.integer "place_id", null: false
+  create_table "zelda_worlds", id: false, force: :cascade do |t|
+    t.string "place_uuid", null: false
+    t.string "game_uuid", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.index ["game_id"], name: "index_zelda_worlds_on_game_id"
-    t.index ["place_id"], name: "index_zelda_worlds_on_place_id"
+    t.index ["place_uuid", "game_uuid"], name: "index_zelda_worlds_on_place_uuid_and_game_uuid", unique: true
   end
-
-  add_foreign_key "bosses", "games"
-  add_foreign_key "characters", "places"
-  add_foreign_key "zelda_mobs", "games"
-  add_foreign_key "zelda_mobs", "monsters"
-  add_foreign_key "zelda_storylines", "characters"
-  add_foreign_key "zelda_storylines", "games"
-  add_foreign_key "zelda_worlds", "games"
-  add_foreign_key "zelda_worlds", "places"
 end

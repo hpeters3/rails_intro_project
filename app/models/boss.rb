@@ -1,6 +1,8 @@
 class Boss < ApplicationRecord
-  belongs_to :game
+ self.primary_key = "boss_uuid"
 
-  validates :boss_id, presence: true
+  belongs_to :game, foreign_key: "game_uuid", primary_key: "boss_uuid"
+
   validates :name, presence: true
+  validates :description, presence: true
 end
