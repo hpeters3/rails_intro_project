@@ -1,7 +1,7 @@
 class Place < ApplicationRecord
   self.primary_key = "place_uuid"
 
-  has_many :characters, foreign_key: "place_uuid", primary_key: "place_uuid", optional: true
+  has_many :characters, foreign_key: "place_uuid", primary_key: "place_uuid"
 
   has_and_belongs_to_many :games,
     join_table: "zelda_worlds",

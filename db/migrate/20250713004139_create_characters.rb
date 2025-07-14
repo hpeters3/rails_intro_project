@@ -6,7 +6,6 @@ class CreateCharacters < ActiveRecord::Migration[8.0]
       t.string :description
       t.string :gender
       t.string :race
-      t.string :game_uuid
       t.string :place_uuid
 
       t.timestamps
