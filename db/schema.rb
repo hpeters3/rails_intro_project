@@ -25,6 +25,7 @@ ActiveRecord::Schema[8.0].define(version: 2025_07_13_145904) do
     t.string "description"
     t.string "gender"
     t.string "race"
+    t.string "game_uuid"
     t.string "place_uuid"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
