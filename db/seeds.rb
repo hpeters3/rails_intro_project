@@ -41,6 +41,29 @@ get_link("characters").each do |c|
   end
 end
 
+get_link("places").each do |p|
+  place = Place.find_or_initialize_by(place_uuid: p["id"])
+    place.name = p["name"]
+    place.description = p["description"]
+
+    if p["appearances"].present?
+      game_uuid = p["appearances"].first[%r{[a-z0-9]*\z}]
+      place.game_uuid = game_uuid
+    end
+
+  place.save!
+
+  p["appearances"].each do |appearance_url|
+    game_uuid = appearance_url[%r{[a-z0-9]*\z}]
+    game = Game.find_by(game_uuid: game_uuid)
+    if game
+      unless place.games.exists?(game_uuid)
+        place.games << game
+      end
+    end
+  end
+end
+
 get_link("monsters").each do |c|
   monster = Monster.find_or_initialize_by(monster_uuid: c["id"])
   monster.name = c["name"]
@@ -63,25 +86,15 @@ get_link("monsters").each do |c|
   end
 end
 
-get_link("places").each do |p|
-  place = Place.find_or_initialize_by(place_uuid: p["id"])
-    place.name = p["name"]
-    place.description = p["description"]
+get_link("bosses").each do |b|
+  boss = Boss.find_or_initialize_by(boss_uuid: b["id"])
+    boss.name = b["name"]
+    boss.description = b["description"]
 
-    if p["appearances"].present?
-      game_uuid = p["appearances"].first[%r{[a-z0-9]*\z}]
-      place.game_uuid = game_uuid
+    if b["appearances"].present?
+      game_uuid = b["appearances"].first[%r{[a-z0-9]*\z}]
+      boss.game_uuid = game_uuid
     end
 
-  place.save!
-
-  p["appearances"].each do |appearance_url|
-    game_uuid = appearance_url[%r{[a-z0-9]*\z}]
-    game = Game.find_by(game_uuid: game_uuid)
-    if game
-      unless place.games.exists?(game_uuid)
-        place.games << game
-      end
-    end
-  end
+  boss.save!
 end

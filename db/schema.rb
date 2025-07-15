@@ -14,10 +14,9 @@ ActiveRecord::Schema[8.0].define(version: 2025_07_13_145904) do
   create_table "bosses", primary_key: "boss_uuid", id: :string, force: :cascade do |t|
     t.string "name"
     t.string "description"
-    t.integer "game_uuid_id"
+    t.string "game_uuid"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.index ["game_uuid_id"], name: "index_bosses_on_game_uuid_id"
   end
 
   create_table "characters", primary_key: "character_uuid", id: :string, force: :cascade do |t|
