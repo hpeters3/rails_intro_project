@@ -3,11 +3,8 @@ class Place < ApplicationRecord
 
   has_many :characters, foreign_key: "place_uuid", primary_key: "place_uuid"
 
-  has_and_belongs_to_many :games,
-    join_table: "zelda_worlds",
-    foreign_key: "place_uuid",
-    association_foreign_key: "game_uuid",
-    primary_key: "place_uuid"
+  has_many :zelda_worlds, dependent: :destroy, foreign_key: :place_uuid, primary_key: :place_uuid
+  has_many :games, through: :zelda_worlds
 
   validates :name, presence: true
   validates :description, presence: true

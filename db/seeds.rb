@@ -63,23 +63,25 @@ get_link("monsters").each do |c|
   end
 end
 
-#
-# url = URI("https://zelda.fanapis.com/api/placeslimit=50")
-# raw = Net::HTTP.get(url)
-# data = JSON.parse(raw)
-#
-# data["data"].each do |place|
-# next if Place.exists?(place_uuid: place["id"])
-#  Place.create!(
-#    place_id: place["id"],
-#    name: place["name"],
-#    description: place["description"]
-#  )
-# end
+get_link("places").each do |p|
+  place = Place.find_or_initialize_by(place_uuid: p["id"])
+    place.name = p["name"]
+    place.description = p["description"]
 
-# fetch_data("places").each do |place_data|
-#  Place.find_or_create_by(uuid: place_data["id"]) do |p|
-#    p.name        = place_data["name"]
-#    p.description = place_data["description"]
-#  end
-# end
+    if p["appearances"].present?
+      game_uuid = p["appearances"].first[%r{[a-z0-9]*\z}]
+      place.game_uuid = game_uuid
+    end
+
+  place.save!
+
+  p["appearances"].each do |appearance_url|
+    game_uuid = appearance_url[%r{[a-z0-9]*\z}]
+    game = Game.find_by(game_uuid: game_uuid)
+    if game
+      unless place.games.exists?(game_uuid)
+        place.games << game
+      end
+    end
+  end
+end
