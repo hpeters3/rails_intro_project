@@ -1,6 +1,6 @@
 class CreateZeldaWorlds < ActiveRecord::Migration[8.0]
   def change
-    create_table :zelda_worlds, id: false do |t|
+    create_table :zelda_worlds do |t|
       t.string :place_uuid, null: false
       t.string :game_uuid, null: false
 

@@ -56,7 +56,7 @@ ActiveRecord::Schema[8.0].define(version: 2025_07_13_145904) do
     t.datetime "updated_at", null: false
   end
 
-  create_table "zelda_mobs", id: false, force: :cascade do |t|
+  create_table "zelda_mobs", force: :cascade do |t|
     t.string "monster_uuid", null: false
     t.string "game_uuid", null: false
     t.datetime "created_at", null: false
@@ -64,7 +64,7 @@ ActiveRecord::Schema[8.0].define(version: 2025_07_13_145904) do
     t.index ["monster_uuid", "game_uuid"], name: "index_zelda_mobs_on_monster_uuid_and_game_uuid", unique: true
   end
 
-  create_table "zelda_storylines", id: false, force: :cascade do |t|
+  create_table "zelda_storylines", force: :cascade do |t|
     t.string "character_uuid", null: false
     t.string "game_uuid", null: false
     t.datetime "created_at", null: false
@@ -72,11 +72,14 @@ ActiveRecord::Schema[8.0].define(version: 2025_07_13_145904) do
     t.index ["character_uuid", "game_uuid"], name: "index_zelda_storylines_on_character_uuid_and_game_uuid", unique: true
   end
 
-  create_table "zelda_worlds", id: false, force: :cascade do |t|
+  create_table "zelda_worlds", force: :cascade do |t|
     t.string "place_uuid", null: false
     t.string "game_uuid", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["place_uuid", "game_uuid"], name: "index_zelda_worlds_on_place_uuid_and_game_uuid", unique: true
   end
+
+  add_foreign_key "zelda_storylines", "characters", column: "character_uuid", primary_key: "character_uuid"
+  add_foreign_key "zelda_storylines", "games", column: "game_uuid", primary_key: "game_uuid"
 end
