@@ -1,6 +1,6 @@
 class MonstersController < ApplicationController
   def view
-    @monsters = Monster.all
+    @monsters = Monster.paginate(page: params[:page], per_page: 10)
   end
 
   def show

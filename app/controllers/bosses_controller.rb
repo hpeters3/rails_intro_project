@@ -1,6 +1,6 @@
 class BossesController < ApplicationController
   def view
-    @bosses = Boss.all
+    @bosses = Boss.paginate(page: params[:page], per_page: 10)
   end
 
   def show

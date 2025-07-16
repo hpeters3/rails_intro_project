@@ -8,7 +8,7 @@ class GamesController < ApplicationController
   end
 
   def view
-    @games = Game.all
+    @games = Game.paginate(page: params[:page], per_page: 10)
   end
 
   def show
