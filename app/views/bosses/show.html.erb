@@ -1,0 +1,9 @@
+<h1><%= @show.name%></h1>
+<table>
+    <tr>
+        <td>Description: <%= @show.description%></td>
+        <% if @show.game_uuid.present? %>
+            <td>First Apperance: <%= @show.game_uuid%></td><!--link to game-->
+        <% end %>
+    </tr>
+<table>

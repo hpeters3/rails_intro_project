@@ -10,4 +10,8 @@ class GamesController < ApplicationController
   def view
     @games = Game.all
   end
+
+  def show
+    @show = Game.find(params[:id])
+  end
 end

@@ -10,11 +10,11 @@
     <tr>
     <% @characters.each do |character|%>
         <tr>
-            <td><%= character.name%></td>
+            <td><%= link_to character.name, character_path(character) %></td>
             <td><%= character.description%></td>
             <td><%= character.gender%></td>
             <td><%= character.race%></td>
-            <td><a href="#"><%= character.game_uuid%></a></td>
+            <td><a href="#"><%= character.game_uuid%></a></td><!--link to game -->
         </tr>
     <% end %>
 </table>

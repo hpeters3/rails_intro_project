@@ -10,7 +10,7 @@
     <tr>
     <% @games.each do |game|%>
         <tr>
-            <td><%= game.name%></td>
+            <td><%= link_to game.name, game_path(game) %></td>
             <td><%= game.description%></td>
             <td><%= game.developer%></td>
             <td><%= game.publisher%></td>

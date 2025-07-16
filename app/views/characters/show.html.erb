@@ -1,0 +1,15 @@
+<h1><%= @show.name%></h1>
+<table>
+    <tr>
+        <td>Description: <%= @show.description%></td>
+        <% if @show.gender.present?%>
+            <td>Gender: <%= @show.gender%></td>
+        <% end %>
+        <% if @show.race.present?%>
+            <td>Race: <%= @show.race%></td>
+        <% end %>
+        <% if @show.game_uuid.present?%>
+            <td>First Apperance: <%= @show.game_uuid%></td> <!--link to game-->
+        <% end %>
+    </tr>
+<table>

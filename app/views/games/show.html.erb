@@ -1,0 +1,11 @@
+<h1><%= @show.name%></h1>
+<table>
+    <tr>
+        <% if @show.description.present?%>
+            <td>Description: <%= @show.description%></td>
+        <% end %>
+        <td>Developer: <%= @show.developer%></td>
+        <td>Publisher: <%= @show.publisher%></td>
+        <td>Release Date: <%= @show.released_date%></td>
+    </tr>
+<table>

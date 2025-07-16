@@ -4,11 +4,13 @@
     <tr>
         <th>Title</th>
         <th>Description</th>
+        <th>First Apperance</th>
     <tr>
     <% @bosses.each do |boss|%>
         <tr>
-            <td><%= boss.name%></td>
+            <td><%= link_to boss.name, boss_path(boss) %></td>
             <td><%= boss.description%></td>
+            <td><a href="#"><%= boss.game_uuid%></a></td><!--link to games-->
         </tr>
     <% end %>
 </table>

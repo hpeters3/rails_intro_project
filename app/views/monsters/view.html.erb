@@ -8,9 +8,9 @@
     <tr>
     <% @monsters.each do |monster|%>
         <tr>
-            <td><%= monster.name%></td>
+            <td><%= link_to monster.name, monster_path(monster) %></td>
             <td><%= monster.description%></td>
-            <td><a href="#"><%= monster.game_uuid%></a></td>
+            <td><a href="#"><%= monster.game_uuid%></a></td><!--link to games-->
         </tr>
     <% end %>
 </table>
