@@ -2,9 +2,11 @@
 <table>
     <tr>
         <td>Description: <%= @show.description%></td>
-        <td>First Apperance: <%= @show.game_uuid%></td><!--link to game-->
+        <% if @show.game_uuid.present?%>
+            <td>First Apperance: <%= link_to @show.game_uuid, game_path(@show.game_uuid) %></td>
+            <% end %>
         <% if @show.character_uuid.present?%>
-            <td>First Inhabitant: <%= @show.character_uuid%></td> <!--link to character-->
+            <td>First Inhabitant: <%= link_to @show.character_uuid, character_path(@show.character_uuid) %></td><!--doesn't work-->
         <% end %>
     </tr>
 <table>

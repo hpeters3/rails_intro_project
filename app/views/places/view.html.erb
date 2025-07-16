@@ -11,8 +11,12 @@
         <tr>
             <td><%= link_to place.name, place_path(place) %></td>
             <td><%= place.description%></td>
-            <td><a href="#"><%= place.game_uuid%></a></td><!--link to game-->
-            <td><a href="#"><%= place.character_uuid%></a></td><!--link to place-->
+            <% if place.game_uuid.present? %>
+                <td><%= link_to place.game_uuid, game_path(place.game_uuid) %></td>
+            <% end %>
+            <% if place.character_uuid.present? %>
+                <td><%= link_to place.character_uuid, character_path(place.character_uuid) %></td><!--doesn't work-->
+            <% end %>
         </tr>
     <% end %>
 </table>

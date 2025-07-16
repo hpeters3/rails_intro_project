@@ -14,7 +14,9 @@
             <td><%= character.description%></td>
             <td><%= character.gender%></td>
             <td><%= character.race%></td>
-            <td><a href="#"><%= character.game_uuid%></a></td><!--link to game -->
+            <% if character.game_uuid.present? %>
+                <td><%= link_to character.game_uuid, game_path(character.game_uuid) %></td>
+            <% end %>
         </tr>
     <% end %>
 </table>

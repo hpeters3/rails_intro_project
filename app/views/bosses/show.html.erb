@@ -3,7 +3,7 @@
     <tr>
         <td>Description: <%= @show.description%></td>
         <% if @show.game_uuid.present? %>
-            <td>First Apperance: <%= @show.game_uuid%></td><!--link to game-->
+            <td>First apperance: <%= link_to @show.game_uuid, game_path(@show.game_uuid) %></td>
         <% end %>
     </tr>
 <table>
