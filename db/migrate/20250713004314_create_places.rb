@@ -5,6 +5,7 @@ class CreatePlaces < ActiveRecord::Migration[8.0]
       t.string :name
       t.string :description
       t.string :game_uuid
+      t.string :character_uuid
 
       t.timestamps
     end

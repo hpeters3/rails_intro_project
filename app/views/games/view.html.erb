@@ -1,0 +1,20 @@
+<%= render partial: "menu" %>
+<h1>Zelda Games</h1>
+<table>
+    <tr>
+        <th>Title</th>
+        <th>Description</th>
+        <th>Developer</th>
+        <th>Publisher</th>
+        <th>Release Date</th>
+    <tr>
+    <% @games.each do |game|%>
+        <tr>
+            <td><%= game.name%></td>
+            <td><%= game.description%></td>
+            <td><%= game.developer%></td>
+            <td><%= game.publisher%></td>
+            <td><%= game.released_date%></td>
+        </tr>
+    <% end %>
+</table>

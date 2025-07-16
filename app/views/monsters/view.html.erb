@@ -1,0 +1,16 @@
+<%= render partial: "games/menu" %>
+<h1>Zelda Monsters</h1>
+<table>
+    <tr>
+        <th>Title</th>
+        <th>Description</th>
+        <th>First Apperance</th>
+    <tr>
+    <% @monsters.each do |monster|%>
+        <tr>
+            <td><%= monster.name%></td>
+            <td><%= monster.description%></td>
+            <td><a href="#"><%= monster.game_uuid%></a></td>
+        </tr>
+    <% end %>
+</table>

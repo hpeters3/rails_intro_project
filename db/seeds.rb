@@ -51,6 +51,11 @@ get_link("places").each do |p|
       place.game_uuid = game_uuid
     end
 
+    if p["inhabitants"].present?
+      character_uuid = p["inhabitants"].first[%r{[a-z0-9]*\z}]
+      place.character_uuid = character_uuid
+    end
+
   place.save!
 
   p["appearances"].each do |appearance_url|

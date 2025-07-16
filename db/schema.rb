@@ -52,6 +52,7 @@ ActiveRecord::Schema[8.0].define(version: 2025_07_13_145904) do
     t.string "name"
     t.string "description"
     t.string "game_uuid"
+    t.string "character_uuid"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end

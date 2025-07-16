@@ -1,0 +1,14 @@
+<%= render partial: "games/menu" %>
+<h1>Zelda Bosses</h1>
+<table>
+    <tr>
+        <th>Title</th>
+        <th>Description</th>
+    <tr>
+    <% @bosses.each do |boss|%>
+        <tr>
+            <td><%= boss.name%></td>
+            <td><%= boss.description%></td>
+        </tr>
+    <% end %>
+</table>

@@ -1,4 +1,13 @@
 Rails.application.routes.draw do
+  # get "/customers/", to: "customers#index"
+  # get "customers/alphabetized"
+  # get "customers/missing_email"
+  get "/", to: "games#index"
+  get "/games", to: "games#view"
+  get "/characters", to: "characters#view"
+  get "/places", to: "places#view"
+  get "/monsters", to: "monsters#view"
+  get "/bosses", to: "bosses#view"
   # Define your application routes per the DSL in https://guides.rubyonrails.org/routing.html
 
   # Reveal health status on /up that returns 200 if the app boots with no exceptions, otherwise 500.

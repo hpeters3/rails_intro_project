@@ -1,0 +1,20 @@
+<%= render partial: "games/menu" %>
+<h1>Zelda Characters</h1>
+<table>
+    <tr>
+        <th>Title</th>
+        <th>Description</th>
+        <th>Gender</th>
+        <th>Race</th>
+        <th>First Apperance</th>
+    <tr>
+    <% @characters.each do |character|%>
+        <tr>
+            <td><%= character.name%></td>
+            <td><%= character.description%></td>
+            <td><%= character.gender%></td>
+            <td><%= character.race%></td>
+            <td><a href="#"><%= character.game_uuid%></a></td>
+        </tr>
+    <% end %>
+</table>

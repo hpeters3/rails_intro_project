@@ -1,0 +1,18 @@
+<%= render partial: "games/menu" %>
+<h1>Zelda Places</h1>
+<table>
+    <tr>
+        <th>Title</th>
+        <th>Description</th>
+        <th>First Apperance</th>
+        <th>First Inhabitant</th>
+    <tr>
+    <% @places.each do |place|%>
+        <tr>
+            <td><%= place.name%></td>
+            <td><%= place.description%></td>
+            <td><a href="#"><%= place.game_uuid%></a></td>
+            <td><a href="#"><%= place.character_uuid%></a></td>
+        </tr>
+    <% end %>
+</table>
