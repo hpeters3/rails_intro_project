@@ -5,6 +5,7 @@ Rails.application.routes.draw do
   get "/places", to: "places#view"
   get "/monsters", to: "monsters#view"
   get "/bosses", to: "bosses#view"
+  get "/search", to: "games#search"
 
   resources :games
   resources :characters
